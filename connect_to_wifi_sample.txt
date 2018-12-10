@@ -1,0 +1,38 @@
+#include <ESP8266WiFi.h>
+ 
+const char* ssid     = "Buffalo-G-4D6E";
+const char* password = "65s63b54e3htu";
+ 
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(5, OUTPUT);
+  
+  Serial.begin(115200);
+  
+  // WIFI_AP, WIFI_STA, WIFI_AP_STA or WIFI_OFF
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+ 
+  Serial.println("");
+  Serial.println("WiFiに接続しました。");  
+  Serial.print( "IPアドレス： "); 
+  Serial.println( WiFi.localIP());
+  Serial.print( "ゲートウェイ： "); 
+  Serial.println(WiFi.gatewayIP());
+  Serial.print( "サブネットマスク： "); 
+  Serial.println(WiFi.subnetMask());
+}
+ 
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(5, HIGH);
+  delay(1000);
+  digitalWrite(5, LOW);
+  delay(1000);
+}
+
